@@ -1,17 +1,18 @@
-# ar_location_view
+# ar_location_viewer
 
 Augmented reality for geolocation.
 Inspired [HDAugmentedReality](https://github.com/DanijelHuis/HDAugmentedReality)
+and 
+https://pub.dev/packages/ar_location_view
 
 
 ## Demo
 
 ![ArLocationView](./demo.gif)
 
-
 ## Description
 
-ArLocationView is designed to used in areas with large concentration of static POIs.
+ArLocationViewer is designed to used in areas with large concentration of static POIs.
 Where primary goal is the visibility of all POIs.
 
 **Remark:** Altitudes of POIs are disregarded
@@ -140,4 +141,4 @@ class AnnotationView extends StatelessWidget {
 
 ## License
 
-ArLocationView is released under the MIT license.
+ArLocationViewer is released under the MIT license.
