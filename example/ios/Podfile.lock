@@ -1,0 +1,52 @@
+PODS:
+  - ar_location_view (0.0.1):
+    - Flutter
+  - camera_avfoundation (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - geolocator_apple (1.2.0):
+    - Flutter
+  - native_device_orientation (0.0.1):
+    - Flutter
+  - permission_handler_apple (9.1.1):
+    - Flutter
+  - sensors_plus (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - ar_location_view (from `.symlinks/plugins/ar_location_view/ios`)
+  - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
+  - Flutter (from `Flutter`)
+  - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
+  - native_device_orientation (from `.symlinks/plugins/native_device_orientation/ios`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
+  - sensors_plus (from `.symlinks/plugins/sensors_plus/ios`)
+
+EXTERNAL SOURCES:
+  ar_location_view:
+    :path: ".symlinks/plugins/ar_location_view/ios"
+  camera_avfoundation:
+    :path: ".symlinks/plugins/camera_avfoundation/ios"
+  Flutter:
+    :path: Flutter
+  geolocator_apple:
+    :path: ".symlinks/plugins/geolocator_apple/ios"
+  native_device_orientation:
+    :path: ".symlinks/plugins/native_device_orientation/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
+  sensors_plus:
+    :path: ".symlinks/plugins/sensors_plus/ios"
+
+SPEC CHECKSUMS:
+  ar_location_view: 135d2ac125894b8d2567c3574600912021b2a214
+  camera_avfoundation: 3125e8cd1a4387f6f31c6c63abb8a55892a9eeeb
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
+  native_device_orientation: 3b4cfc9565a7b879cc4fde282b3e27745e852d0d
+  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
+  sensors_plus: 42b9de1b8237675fa8d8121e4bb93be0f79fa61d
+
+PODFILE CHECKSUM: f5c76b87f08574d978c7dda1018f2d462fdaf7ea
+
+COCOAPODS: 1.14.2
