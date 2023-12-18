@@ -2,8 +2,12 @@
 
 Augmented reality for geolocation.
 Inspired [HDAugmentedReality](https://github.com/DanijelHuis/HDAugmentedReality)
-and 
+
+
+Is an upgraded version of:
 https://pub.dev/packages/ar_location_view
+
+Upgraded dependencies
 
 
 ## Demo
