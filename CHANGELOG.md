@@ -1,3 +1,7 @@
+## 2.0.3
+
+* Update for iOS podspec
+
 ## 2.0.2
 
 * Update dependencies (geolocator 10.1.0)
