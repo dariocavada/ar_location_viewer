@@ -1,4 +1,8 @@
 
+## 2.0.9
+
+* Updated dependencies
+
 ## 2.0.4
 
 * Updated some wrong classes
