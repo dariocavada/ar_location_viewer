@@ -4,7 +4,7 @@ import CoreLocation
 import CoreMotion
 import simd
 
-public class SwiftArLocationViewPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, CLLocationManagerDelegate {
+public class SwiftArLocationViewerPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, CLLocationManagerDelegate {
 
   private var eventSink: FlutterEventSink?;
   private var location: CLLocationManager = CLLocationManager();
@@ -24,7 +24,7 @@ public class SwiftArLocationViewPlugin: NSObject, FlutterPlugin, FlutterStreamHa
 
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterEventChannel.init(name: "pie/ar_view_location", binaryMessenger: registrar.messenger())
-    _ = SwiftArLocationViewPlugin(channel: channel);
+    _ = SwiftArLocationViewerPlugin(channel: channel);
   }
 
  public func onListen(withArguments arguments: Any?, eventSink: @escaping FlutterEventSink) -> FlutterError? {

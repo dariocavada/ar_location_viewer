@@ -1,4 +1,4 @@
 #import <Flutter/Flutter.h>
 
-@interface ArLocationViewPlugin : NSObject<FlutterPlugin>
+@interface ArLocationViewerPlugin : NSObject<FlutterPlugin>
 @end

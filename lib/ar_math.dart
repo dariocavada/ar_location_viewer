@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:ar_location_view/ar_extension.dart';
+import 'package:ar_location_viewer/ar_extension.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:native_device_orientation/native_device_orientation.dart';
 import 'package:vector_math/vector_math_64.dart';
