@@ -36,7 +36,7 @@ class ArCompass {
   ArCompass._();
 
   static const EventChannel _compassChannel =
-      EventChannel('pie/ar_view_location');
+      EventChannel('pie/ar_viewer_location');
   static Stream<CompassEvent>? _stream;
 
   /// Provides a [Stream] of compass events that can be listened to.
