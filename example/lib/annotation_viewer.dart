@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'annotations.dart';
 
-class AnnotationView extends StatelessWidget {
-  const AnnotationView({
+class AnnotationViewer extends StatelessWidget {
+  const AnnotationViewer({
     Key? key,
     required this.annotation,
   }) : super(key: key);

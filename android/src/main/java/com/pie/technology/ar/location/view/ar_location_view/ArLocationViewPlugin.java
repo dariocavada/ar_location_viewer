@@ -1,4 +1,4 @@
-package com.pie.technology.ar.location.view.ar_location_view;
+package com.pie.technology.ar.location.view.ar_location_viewer;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -21,10 +21,10 @@ import io.flutter.plugin.common.EventChannel.StreamHandler;
 
 
 /**
- * ArLocationViewPlugin
+ * ArLocationViewerPlugin
  */
-public class ArLocationViewPlugin implements FlutterPlugin, StreamHandler {
-    private static final String TAG = "ArLocationView";
+public class ArLocationViewerPlugin implements FlutterPlugin, StreamHandler {
+    private static final String TAG = "ArLocationViewer";
 
 
     private static final int SENSOR_DELAY_MICROS = 500;
@@ -56,11 +56,11 @@ public class ArLocationViewPlugin implements FlutterPlugin, StreamHandler {
     private float[] gravityValues = new float[3];
     private float[] magneticValues = new float[3];
 
-    public ArLocationViewPlugin() {
+    public ArLocationViewerPlugin() {
         // no-op
     }
 
-    private ArLocationViewPlugin(Context context) {
+    private ArLocationViewerPlugin(Context context) {
         display = ((DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE))
                 .getDisplay(Display.DEFAULT_DISPLAY);
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
@@ -78,8 +78,8 @@ public class ArLocationViewPlugin implements FlutterPlugin, StreamHandler {
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
-        EventChannel channel = new EventChannel(binding.getBinaryMessenger(), "pie/ar_view_location");
-        channel.setStreamHandler(new ArLocationViewPlugin(binding.getApplicationContext()));
+        EventChannel channel = new EventChannel(binding.getBinaryMessenger(), "pie/ar_viewer_location");
+        channel.setStreamHandler(new ArLocationViewerPlugin(binding.getApplicationContext()));
     }
 
     @Override

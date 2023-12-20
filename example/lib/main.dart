@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ar_location_view/ar_location_view.dart';
+import 'package:ar_location_viewer/ar_location_viewer.dart';
 import 'package:geolocator/geolocator.dart';
-import 'annotation_view.dart';
+import 'annotation_viewer.dart';
 import 'annotations.dart';
 
 void main() {
@@ -25,8 +25,8 @@ class _MyAppState extends State<MyApp> {
         body: ArLocationWidget(
           annotations: annotations,
           showDebugInfoSensor: false,
-          annotationViewBuilder: (context, annotation) {
-            return AnnotationView(
+          annotationViewerBuilder: (context, annotation) {
+            return AnnotationViewer(
               key: ValueKey(annotation.uid),
               annotation: annotation as Annotation,
             );

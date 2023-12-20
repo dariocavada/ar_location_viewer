@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.version          = '0.0.2'
   s.summary          = 'Plugins For Ar Location Viewer'
   s.description      = <<-DESC
-Plugins For Ar Location View
+Plugins For Ar Location Viewer
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }

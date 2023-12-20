@@ -1,4 +1,4 @@
-library ar_location_view;
+library ar_location_viewer;
 
 export 'ar_annotation.dart';
 export 'ar_camera.dart';
@@ -9,4 +9,4 @@ export 'ar_math.dart';
 export 'ar_sensor.dart';
 export 'ar_sensor_manager.dart';
 export 'ar_status.dart';
-export 'ar_view.dart';
+export 'ar_viewer.dart';

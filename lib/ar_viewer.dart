@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:native_device_orientation/native_device_orientation.dart';
 
-import 'ar_location_view.dart';
+import 'ar_location_viewer.dart';
 
 /// Signature for a function that creates a widget for a given annotation,
-typedef AnnotationViewBuilder = Widget Function(
+typedef AnnotationViewerBuilder = Widget Function(
     BuildContext context, ArAnnotation annotation);
 
 typedef ChangeLocationCallback = void Function(Position position);
 
-class ArView extends StatefulWidget {
-  const ArView({
-    Key? key,
+class ArViewer extends StatefulWidget {
+  const ArViewer({
+    super.key,
     required this.annotations,
-    required this.annotationViewBuilder,
+    required this.annotationViewerBuilder,
     required this.frame,
     required this.onLocationChange,
     this.annotationWidth = 200,
@@ -26,10 +26,10 @@ class ArView extends StatefulWidget {
     this.paddingOverlap = 5,
     this.yOffsetOverlap,
     required this.minDistanceReload,
-  }) : super(key: key);
+  });
 
   final List<ArAnnotation> annotations;
-  final AnnotationViewBuilder annotationViewBuilder;
+  final AnnotationViewerBuilder annotationViewerBuilder;
   final double annotationWidth;
   final double annotationHeight;
 
@@ -46,10 +46,10 @@ class ArView extends StatefulWidget {
   final double minDistanceReload;
 
   @override
-  State<ArView> createState() => _ArViewState();
+  State<ArViewer> createState() => _ArViewerState();
 }
 
-class _ArViewState extends State<ArView> {
+class _ArViewerState extends State<ArViewer> {
   ArStatus arStatus = ArStatus();
 
   Position? position;
@@ -103,7 +103,7 @@ class _ArViewState extends State<ArView> {
                         child: SizedBox(
                           width: widget.annotationWidth,
                           height: widget.annotationHeight,
-                          child: widget.annotationViewBuilder(context, e),
+                          child: widget.annotationViewerBuilder(context, e),
                         ),
                       ),
                     );

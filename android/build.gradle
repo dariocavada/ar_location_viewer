@@ -1,4 +1,4 @@
-group 'com.pie.technology.ar.location.view.ar_location_view'
+group 'com.pie.technology.ar.location.view.ar_location_viewer'
 version '1.0'
 
 buildscript {

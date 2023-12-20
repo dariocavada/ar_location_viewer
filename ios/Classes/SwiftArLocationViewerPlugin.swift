@@ -23,7 +23,7 @@ public class SwiftArLocationViewerPlugin: NSObject, FlutterPlugin, FlutterStream
 
 
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterEventChannel.init(name: "pie/ar_view_location", binaryMessenger: registrar.messenger())
+    let channel = FlutterEventChannel.init(name: "pie/ar_viewer_location", binaryMessenger: registrar.messenger())
     _ = SwiftArLocationViewerPlugin(channel: channel);
   }
 
