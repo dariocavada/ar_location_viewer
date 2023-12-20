@@ -7,7 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:vector_math/vector_math_64.dart';
 
-import 'ar_location_view.dart';
+import 'ar_location_viewer.dart';
 
 class ArSensorManager {
   static final ArSensorManager instance = ArSensorManager._internal();

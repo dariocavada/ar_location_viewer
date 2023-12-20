@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'ar_location_view.dart';
+import 'ar_location_viewer.dart';
 
 class ArLocationWidget extends StatefulWidget {
   const ArLocationWidget({
     Key? key,
     required this.annotations,
-    required this.annotationViewBuilder,
+    required this.annotationViewerBuilder,
     required this.onLocationChange,
     this.annotationWidth = 200,
     this.annotationHeight = 75,
@@ -24,7 +24,7 @@ class ArLocationWidget extends StatefulWidget {
 
   ///Function given context and annotation
   ///return widget for annotation view
-  final AnnotationViewBuilder annotationViewBuilder;
+  final AnnotationViewerBuilder annotationViewerBuilder;
 
   ///Annotation view width
   final double annotationWidth;
@@ -77,9 +77,9 @@ class _ArLocationWidgetState extends State<ArLocationWidget> {
           },
         ),
         if (initCam)
-          ArView(
+          ArViewer(
             annotations: widget.annotations,
-            annotationViewBuilder: widget.annotationViewBuilder,
+            annotationViewerBuilder: widget.annotationViewerBuilder,
             frame: widget.frame ?? const Size(100, 75),
             onLocationChange: widget.onLocationChange,
             annotationWidth: widget.annotationWidth,

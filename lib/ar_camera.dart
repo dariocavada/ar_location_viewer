@@ -13,10 +13,10 @@ class ArCamera extends StatefulWidget {
   final Function() onCameraSuccess;
 
   @override
-  State<ArCamera> createState() => _ArCameraViewState();
+  State<ArCamera> createState() => _ArCameraViewerState();
 }
 
-class _ArCameraViewState extends State<ArCamera> {
+class _ArCameraViewerState extends State<ArCamera> {
   CameraController? controller;
 
   bool isCameraAuthorize = false;
