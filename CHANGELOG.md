@@ -1,3 +1,8 @@
+
+## 2.0.4
+
+* Updated some wrong classes
+
 ## 2.0.3
 
 * Update for iOS podspec

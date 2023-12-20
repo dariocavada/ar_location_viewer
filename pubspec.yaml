@@ -1,6 +1,6 @@
 name: ar_location_viewer
 description: ArLocationViewer is designed to used in areas with large concentration of static POIs
-version: 2.0.3
+version: 2.0.4
 homepage: 'https://github.com/dariocavada/ar_location_viewer.git'
 
 environment:
