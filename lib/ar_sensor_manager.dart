@@ -32,7 +32,9 @@ class ArSensorManager {
   double _heading = 0.0;
   double _compassAccuracy = 0.0;
 
-  final StreamController<ArSensor> _arSensor = StreamController();
+  //final StreamController<ArSensor> _arSensor = StreamController();
+  final StreamController<ArSensor> _arSensor =
+      StreamController<ArSensor>.broadcast();
 
   List<double> pitchHistory = [];
 
