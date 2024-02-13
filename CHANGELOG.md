@@ -1,4 +1,8 @@
 
+## 2.0.10
+
+* Force text color to black for debug info windows
+
 ## 2.0.9
 
 * Updated dependencies

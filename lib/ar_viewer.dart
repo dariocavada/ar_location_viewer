@@ -128,10 +128,20 @@ class _ArViewerState extends State<ArViewer> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Latitude  : ${arSensor?.location?.latitude}'),
-            Text('Longitude : ${arSensor?.location?.longitude}'),
-            Text('Pitch     : ${arSensor?.pitch}'),
-            Text('Heading   : ${arSensor?.heading}'),
+            Text('Latitude  : ${arSensor?.location?.latitude}',
+                style: const TextStyle(
+                  color: Colors.black,
+                )),
+            Text('Longitude : ${arSensor?.location?.longitude}',
+                style: const TextStyle(
+                  color: Colors.black,
+                )),
+            Text('Pitch     : ${arSensor?.pitch}',
+                style: const TextStyle(color: Colors.black)),
+            Text('Heading   : ${arSensor?.heading}',
+                style: const TextStyle(
+                  color: Colors.black,
+                )),
           ],
         ),
       ),
