@@ -49,6 +49,18 @@ Add permission in `manifest.xml`
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+```
+
+If you have an exception like: 
+
+```
+PlatformException(error, To use the sampling rate of 500 microseconds, app needs to declare the normal permission HIGH_SAMPLING_RATE_SENSORS., null, null) 
+```
+add  the follwing to the manifest:
+
+```xml
+<uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS"/>
 ```
 
 Create class extend ArAnnotation
