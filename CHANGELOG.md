@@ -1,4 +1,7 @@
 
+## 2.0.12
+* Change readme.md to solve an exeption for latest Android version (14)
+
 ## 2.0.11
 
 * Added final StreamController<ArSensor> _arSensor = StreamController<ArSensor>.broadcast(); (stream errors otherwise)
