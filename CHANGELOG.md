@@ -1,4 +1,9 @@
 
+## 2.0.13
+* Updated geolocator and native_device_orientation
+* Updated gradle 
+* Updated example and added the HIGH_SAMPLING_RATE_SENSORS android permission
+
 ## 2.0.12
 * Change readme.md to solve an exeption for latest Android version (14)
 
