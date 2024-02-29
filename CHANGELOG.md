@@ -1,4 +1,8 @@
 
+## 2.0.14 
+* Updated camera, permission_handler and plugin_platform_interface
+* Changed Android package to eu.suggesto.ar_location_viewer  
+
 ## 2.0.13
 * Updated geolocator and native_device_orientation
 * Updated gradle 

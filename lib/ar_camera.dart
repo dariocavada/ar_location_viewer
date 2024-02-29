@@ -4,10 +4,10 @@ import 'package:permission_handler/permission_handler.dart';
 
 class ArCamera extends StatefulWidget {
   const ArCamera({
-    Key? key,
+    super.key,
     required this.onCameraError,
     required this.onCameraSuccess,
-  }) : super(key: key);
+  });
 
   final Function(String error) onCameraError;
   final Function() onCameraSuccess;

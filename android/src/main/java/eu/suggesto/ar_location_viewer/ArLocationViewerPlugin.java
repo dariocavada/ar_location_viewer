@@ -1,4 +1,4 @@
-package com.pie.technology.ar.location.view.ar_location_viewer;
+package eu.suggesto.ar_location_viewer;
 
 import android.content.Context;
 import android.hardware.Sensor;
