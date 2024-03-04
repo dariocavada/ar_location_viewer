@@ -1,4 +1,7 @@
 
+## 2.0.15 
+* Updated ar_camera.dart, better dispose handling and exception if no camera found.
+
 ## 2.0.14 
 * Updated camera, permission_handler and plugin_platform_interface
 * Changed Android package to eu.suggesto.ar_location_viewer  

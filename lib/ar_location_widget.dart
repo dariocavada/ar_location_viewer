@@ -4,7 +4,7 @@ import 'ar_location_viewer.dart';
 
 class ArLocationWidget extends StatefulWidget {
   const ArLocationWidget({
-    Key? key,
+    super.key,
     required this.annotations,
     required this.annotationViewerBuilder,
     required this.onLocationChange,
@@ -17,7 +17,7 @@ class ArLocationWidget extends StatefulWidget {
     this.yOffsetOverlap,
     this.accessory,
     this.minDistanceReload = 50,
-  }) : super(key: key);
+  });
 
   ///List of POIs
   final List<ArAnnotation> annotations;

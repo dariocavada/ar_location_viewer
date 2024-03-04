@@ -29,9 +29,9 @@ class _ArCameraViewerState extends State<ArCamera> {
   }
 
   @override
-  void dispose() {
+  void dispose() async {
+    await controller?.dispose();
     super.dispose();
-    controller?.dispose();
   }
 
   @override
@@ -58,9 +58,13 @@ class _ArCameraViewerState extends State<ArCamera> {
 
   Future<void> _initializeCamera() async {
     try {
+      isCameraInitialize = false;
       await _requestCameraAuthorization();
       if (isCameraAuthorize) {
         final cameras = await availableCameras();
+        if (cameras.isEmpty) {
+          throw Exception('No cameras available');
+        }
         controller = CameraController(
           cameras[0],
           ResolutionPreset.max,
@@ -71,7 +75,8 @@ class _ArCameraViewerState extends State<ArCamera> {
         widget.onCameraSuccess();
       }
     } catch (ex) {
-      widget.onCameraError('On error when camera initialize');
+      print('Error when camera initialize: $ex');
+      widget.onCameraError('On error when camera initialize ');
       isCameraInitialize = false;
     } finally {
       setState(() {});
