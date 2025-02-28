@@ -1,4 +1,8 @@
 
+## 3.0.0
+* Updated all dependencies to the latest available version.  
+* For Android: updated Kotlin, Java, and Gradle.
+
 ## 2.0.15 
 * Updated ar_camera.dart, better dispose handling and exception if no camera found.
 

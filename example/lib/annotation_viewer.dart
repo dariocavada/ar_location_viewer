@@ -4,9 +4,9 @@ import 'annotations.dart';
 
 class AnnotationViewer extends StatelessWidget {
   const AnnotationViewer({
-    Key? key,
+    super.key,
     required this.annotation,
-  }) : super(key: key);
+  });
 
   final Annotation annotation;
 
