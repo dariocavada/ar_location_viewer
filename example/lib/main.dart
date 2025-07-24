@@ -35,6 +35,13 @@ class _MyAppState extends State<MyApp> {
             Future.delayed(const Duration(seconds: 5), () {
               annotations =
                   fakeAnnotation(position: position, numberMaxPoi: 50);
+
+              // Uncomment to test far annotations
+              /*annotations = farAnnotation(
+                position: position,
+                numberMaxPoi: 5,
+              );*/
+
               setState(() {});
             });
           },

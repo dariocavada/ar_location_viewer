@@ -26,6 +26,7 @@ class ArViewer extends StatefulWidget {
     this.showDebugInfoSensor = true,
     this.paddingOverlap = 5,
     this.yOffsetOverlap,
+    this.tooFarAnnotationsMessage = 'No annotations visible',
     required this.minDistanceReload,
     this.cameraController,
   });
@@ -47,6 +48,7 @@ class ArViewer extends StatefulWidget {
   final double? yOffsetOverlap;
   final double minDistanceReload;
   final CameraController? cameraController;
+  final String tooFarAnnotationsMessage;
 
   @override
   State<ArViewer> createState() => _ArViewerState();
@@ -88,6 +90,15 @@ class _ArViewerState extends State<ArViewer> {
             final annotations = _filterAndSortArAnnotation(
                 widget.annotations, arSensor, deviceLocation);
             _transformAnnotation(annotations);
+
+            // Check if annotations are empty and handle the case
+            var showAnnotationTooFar = false;
+            if (annotations.isEmpty) {
+              if (widget.annotations.isEmpty == false) {
+                showAnnotationTooFar = true;
+              }
+            }
+
             return Stack(
               children: [
                 if (kDebugMode && widget.showDebugInfoSensor)
@@ -112,6 +123,28 @@ class _ArViewerState extends State<ArViewer> {
                     );
                   },
                 ).toList()),
+                if (showAnnotationTooFar)
+                  Center(
+                    child: Card(
+                      color: Colors.white,
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 16),
+                        child: Text(
+                          widget.tooFarAnnotationsMessage,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.black87,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             );
           }

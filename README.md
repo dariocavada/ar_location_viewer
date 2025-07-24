@@ -158,3 +158,4 @@ class AnnotationView extends StatelessWidget {
 ## License
 
 ArLocationViewer is released under the MIT license.
+

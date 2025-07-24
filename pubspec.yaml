@@ -1,7 +1,7 @@
 name: ar_location_viewer
 description: ArLocationViewer is designed to used in areas with large concentration of static POIs
 # pub.dev using `flutter pub publish`.
-version: 3.0.1
+version: 3.0.2
 homepage: 'https://github.com/dariocavada/ar_location_viewer.git'
 
 environment:

@@ -1,4 +1,7 @@
 
+## 3.0.2
+* Added customizable message for when the user is too far away.
+
 ## 3.0.1
 * Updated all dependencies to the latest available version.  
 * For Android: updated Gradle.

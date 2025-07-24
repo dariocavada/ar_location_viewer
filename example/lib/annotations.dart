@@ -18,6 +18,28 @@ AnnotationType getRandomAnnotation() {
   return types[index];
 }
 
+List<Annotation> farAnnotation({
+  required Position position,
+  int distance = 1500,
+  int numberMaxPoi = 10,
+}) {
+  return List<Annotation>.generate(
+    numberMaxPoi,
+    (index) {
+      return Annotation(
+        uid: const Uuid().v1(),
+        position: getRandomLocation(
+          0.0,
+          0.0,
+          distance / 100000,
+          distance / 100000,
+        ),
+        type: getRandomAnnotation(),
+      );
+    },
+  );
+}
+
 List<Annotation> fakeAnnotation(
     {required Position position, int distance = 1500, int numberMaxPoi = 100}) {
   return List<Annotation>.generate(
