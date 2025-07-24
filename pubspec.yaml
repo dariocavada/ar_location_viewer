@@ -1,7 +1,7 @@
 name: ar_location_viewer
 description: ArLocationViewer is designed to used in areas with large concentration of static POIs
 # pub.dev using `flutter pub publish`.
-version: 3.0.0
+version: 3.0.1
 homepage: 'https://github.com/dariocavada/ar_location_viewer.git'
 
 environment:
@@ -13,17 +13,17 @@ dependencies:
     sdk: flutter
   plugin_platform_interface: ^2.1.8
   sensors_plus: ^6.1.1
-  camera: ^0.11.1
-  permission_handler: ^11.4.0
+  camera: ^0.11.2
+  permission_handler: ^12.0.1
   vector_math: ^2.1.4
   #geolocator: ^11.0.0
-  geolocator: ^13.0.2 
+  geolocator: ^14.0.2 
   native_device_orientation: ^2.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0 
+  flutter_lints: ^6.0.0 
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

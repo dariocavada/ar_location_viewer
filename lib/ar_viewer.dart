@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:native_device_orientation/native_device_orientation.dart';
+import 'package:camera/camera.dart';
 
 import 'ar_location_viewer.dart';
 
@@ -26,6 +27,7 @@ class ArViewer extends StatefulWidget {
     this.paddingOverlap = 5,
     this.yOffsetOverlap,
     required this.minDistanceReload,
+    this.cameraController,
   });
 
   final List<ArAnnotation> annotations;
@@ -44,6 +46,7 @@ class ArViewer extends StatefulWidget {
   final double paddingOverlap;
   final double? yOffsetOverlap;
   final double minDistanceReload;
+  final CameraController? cameraController;
 
   @override
   State<ArViewer> createState() => _ArViewerState();
@@ -158,16 +161,43 @@ class _ArViewerState extends State<ArViewer> {
       NativeDeviceOrientation orientation, double width, double height) {
     double hFov = 0;
     double vFov = 0;
-    const tempFOv = 58.0;
+
+    // FOV più realistico basato su dispositivi tipici
+    // iPhone: ~65° orizzontale, Android varia da 60-75°
+    double baseFOv = 65.0;
+
+    // Se disponibile, usa i dati reali della fotocamera
+    if (widget.cameraController != null &&
+        widget.cameraController!.value.isInitialized) {
+      try {
+        // Prova ad ottenere FOV reale se disponibile nel futuro
+        // Per ora usa valori più precisi basati sulla risoluzione
+        final previewSize = widget.cameraController!.value.previewSize!;
+        final aspectRatio = previewSize.width / previewSize.height;
+
+        // Adatta il FOV in base all'aspect ratio della fotocamera
+        baseFOv = 60.0 + (aspectRatio - 1.0) * 10.0; // Adattamento dinamico
+        baseFOv = baseFOv.clamp(55.0, 75.0); // Limita a valori ragionevoli
+      } catch (e) {
+        // Fallback ai valori di default
+        baseFOv = 65.0;
+      }
+    }
+
+    // Calcola l'aspect ratio dello schermo
+    final aspectRatio = width / height;
 
     if (orientation == NativeDeviceOrientation.landscapeLeft ||
         orientation == NativeDeviceOrientation.landscapeRight) {
-      hFov = tempFOv;
-      vFov = (2 * atan(tan((hFov / 2).toRadians) * (height / width))).toDegrees;
+      hFov = baseFOv;
+      // Calcola vFov basato sull'aspect ratio reale
+      vFov = (2 * atan(tan((hFov / 2).toRadians) / aspectRatio)).toDegrees;
     } else {
-      vFov = tempFOv;
-      hFov = (2 * atan(tan((vFov / 2).toRadians) * (width / height))).toDegrees;
+      // In modalità portrait, il FOV verticale è tipicamente minore
+      vFov = baseFOv * 0.75; // Ridotto per modalità portrait
+      hFov = (2 * atan(tan((vFov / 2).toRadians) * aspectRatio)).toDegrees;
     }
+
     arStatus.hFov = hFov;
     arStatus.vFov = vFov;
     arStatus.hPixelPerDegree = hFov > 0 ? (width / hFov) : 0;
@@ -192,19 +222,27 @@ class _ArViewerState extends State<ArViewer> {
     return annotations.map((e) {
       final annotationLocation = e.position;
       e.azimuth = Geolocator.bearingBetween(
-        deviceLocation.latitude,
-        deviceLocation.longitude,
-        annotationLocation.latitude,
-        annotationLocation.longitude,
-      );
+          deviceLocation.latitude,
+          deviceLocation.longitude,
+          annotationLocation.latitude,
+          annotationLocation.longitude);
       e.distanceFromUser = Geolocator.distanceBetween(
           deviceLocation.latitude,
           deviceLocation.longitude,
           annotationLocation.latitude,
           annotationLocation.longitude);
+
+      // Miglioramento: correggi la distorsione agli estremi del FOV
+      final deltaAngle = ArMath.deltaAngle(e.azimuth, arSensor.heading);
+      final normalizedAngle = deltaAngle / (arStatus.hFov / 2);
+
+      // Applica una correzione per la distorsione delle lenti
+      final correctedDeltaAngle =
+          deltaAngle * (1.0 + 0.1 * normalizedAngle * normalizedAngle);
+
       final dy = arSensor.pitch * arStatus.vPixelPerDegree;
-      final dx = ArMath.deltaAngle(e.azimuth, arSensor.heading) *
-          arStatus.hPixelPerDegree;
+      final dx = correctedDeltaAngle * arStatus.hPixelPerDegree;
+
       e.arPosition = Offset(dx, dy);
       return e;
     }).toList();

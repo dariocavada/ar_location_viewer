@@ -7,10 +7,12 @@ class ArCamera extends StatefulWidget {
     super.key,
     required this.onCameraError,
     required this.onCameraSuccess,
+    this.onCameraInitialized,
   });
 
   final Function(String error) onCameraError;
   final Function() onCameraSuccess;
+  final Function(CameraController controller)? onCameraInitialized;
 
   @override
   State<ArCamera> createState() => _ArCameraViewerState();
@@ -50,7 +52,19 @@ class _ArCameraViewerState extends State<ArCamera> {
       return SizedBox(
         width: double.infinity,
         height: double.infinity,
-        child: CameraPreview(controller!),
+        child: ClipRect(
+          child: OverflowBox(
+            alignment: Alignment.center,
+            child: FittedBox(
+              fit: BoxFit.cover,
+              child: SizedBox(
+                width: controller!.value.previewSize!.height,
+                height: controller!.value.previewSize!.width,
+                child: CameraPreview(controller!),
+              ),
+            ),
+          ),
+        ),
       );
     }
     return const Text('Camera error');
@@ -67,12 +81,17 @@ class _ArCameraViewerState extends State<ArCamera> {
         }
         controller = CameraController(
           cameras[0],
-          ResolutionPreset.max,
+          ResolutionPreset.high,
           enableAudio: false,
         );
         await controller?.initialize();
         isCameraInitialize = true;
         widget.onCameraSuccess();
+
+        // Notifica il controller inizializzato per calcoli FOV più precisi
+        if (widget.onCameraInitialized != null) {
+          widget.onCameraInitialized!(controller!);
+        }
       }
     } catch (ex) {
       print('Error when camera initialize: $ex');

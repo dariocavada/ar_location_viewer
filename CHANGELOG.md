@@ -1,4 +1,10 @@
 
+## 3.0.1
+* Updated all dependencies to the latest available version.  
+* For Android: updated Gradle.
+* Improved AR camera realism: dynamic FOV calculation, lens distortion correction, optimized resolution and aspect ratio handling.
+
+
 ## 3.0.0
 * Updated all dependencies to the latest available version.  
 * For Android: updated Kotlin, Java, and Gradle.

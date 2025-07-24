@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 
 import 'ar_location_viewer.dart';
 
@@ -61,6 +62,7 @@ class ArLocationWidget extends StatefulWidget {
 
 class _ArLocationWidgetState extends State<ArLocationWidget> {
   bool initCam = false;
+  CameraController? cameraController;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +76,9 @@ class _ArLocationWidgetState extends State<ArLocationWidget> {
           onCameraSuccess: () {
             initCam = true;
             setState(() {});
+          },
+          onCameraInitialized: (CameraController controller) {
+            cameraController = controller;
           },
         ),
         if (initCam)
@@ -89,6 +94,7 @@ class _ArLocationWidgetState extends State<ArLocationWidget> {
             paddingOverlap: widget.paddingOverlap,
             yOffsetOverlap: widget.yOffsetOverlap,
             minDistanceReload: widget.minDistanceReload,
+            cameraController: cameraController,
           ),
         if (widget.accessory != null) widget.accessory!
       ],
