@@ -18,6 +18,7 @@ class ArLocationWidget extends StatefulWidget {
     this.yOffsetOverlap,
     this.accessory,
     this.minDistanceReload = 50,
+    this.tooFarAnnotationsMessage = 'No annotations visible',
   });
 
   ///List of POIs
@@ -55,6 +56,9 @@ class ArLocationWidget extends StatefulWidget {
 
   ///Min distance reload
   final double minDistanceReload;
+
+  ///Message when annotations are too far
+  final String tooFarAnnotationsMessage;
 
   @override
   State<ArLocationWidget> createState() => _ArLocationWidgetState();
@@ -95,6 +99,7 @@ class _ArLocationWidgetState extends State<ArLocationWidget> {
             yOffsetOverlap: widget.yOffsetOverlap,
             minDistanceReload: widget.minDistanceReload,
             cameraController: cameraController,
+            tooFarAnnotationsMessage: widget.tooFarAnnotationsMessage,
           ),
         if (widget.accessory != null) widget.accessory!
       ],

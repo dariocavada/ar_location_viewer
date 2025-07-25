@@ -1,3 +1,5 @@
+## 3.0.3
+* Added customizable message for when the user is too far away in ar_location_widget
 
 ## 3.0.2
 * Added customizable message for when the user is too far away.
