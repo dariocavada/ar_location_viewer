@@ -52,22 +52,63 @@ class _ArCameraViewerState extends State<ArCamera> {
       return SizedBox(
         width: double.infinity,
         height: double.infinity,
+        child: _buildCameraPreview(),
+      );
+    }
+    return const Text('Camera error');
+  }
+
+  Widget _buildCameraPreview() {
+    if (controller == null || !controller!.value.isInitialized) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    // Ottieni le dimensioni dello schermo
+    final screenSize = MediaQuery.of(context).size;
+    final screenWidth = screenSize.width;
+    final screenHeight = screenSize.height;
+
+    // Ottieni le dimensioni del preview della fotocamera
+    final previewSize = controller!.value.previewSize!;
+
+    // La fotocamera restituisce sempre dimensioni in portrait (height > width)
+    // quindi dobbiamo considerare l'orientamento attuale
+    final isLandscape = screenWidth > screenHeight;
+
+    double cameraWidth, cameraHeight;
+    if (isLandscape) {
+      // In landscape, scambia le dimensioni del preview
+      cameraWidth = previewSize.height;
+      cameraHeight = previewSize.width;
+    } else {
+      // In portrait, usa le dimensioni normali
+      cameraWidth = previewSize.width;
+      cameraHeight = previewSize.height;
+    }
+
+    // Calcola le scale per fare fit dello schermo
+    final scaleX = screenWidth / cameraWidth;
+    final scaleY = screenHeight / cameraHeight;
+    final scale = scaleX > scaleY ? scaleX : scaleY;
+
+    return Center(
+      child: SizedBox(
+        width: screenWidth,
+        height: screenHeight,
         child: ClipRect(
-          child: OverflowBox(
-            alignment: Alignment.center,
-            child: FittedBox(
-              fit: BoxFit.cover,
+          child: Transform.scale(
+            scale: scale,
+            child: Center(
               child: SizedBox(
-                width: controller!.value.previewSize!.height,
-                height: controller!.value.previewSize!.width,
+                width: cameraWidth,
+                height: cameraHeight,
                 child: CameraPreview(controller!),
               ),
             ),
           ),
         ),
-      );
-    }
-    return const Text('Camera error');
+      ),
+    );
   }
 
   Future<void> _initializeCamera() async {

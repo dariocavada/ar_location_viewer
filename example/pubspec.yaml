@@ -4,7 +4,7 @@ description: Demonstrates how to use the ar_location_viewer plugin.
 publish_to: 'none'
 
 environment:
-  sdk: '>=3.1.5 <4.0.0'
+  sdk: ^3.7.0
 
 dependencies:
   flutter:
@@ -13,11 +13,11 @@ dependencies:
   ar_location_viewer:
     path: ../
 
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.8
   geolocator: ^14.0.2
-  uuid: ^4.2.2
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0

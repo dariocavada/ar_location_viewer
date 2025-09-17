@@ -82,3 +82,32 @@ Position getRandomLocation(double centerLatitude, double centerLongitude,
     headingAccuracy: 0.0,
   );
 }
+
+List<Annotation> realAnnotation(
+    {required double centerLatitude, required centerLongitude}) {
+  return List<Annotation>.generate(
+    1,
+    (index) {
+      return Annotation(
+        uid: const Uuid().v1(),
+        position: getRealDistance(centerLatitude, centerLongitude),
+        type: getRandomAnnotation(),
+      );
+    },
+  );
+}
+
+Position getRealDistance(double centerLatitude, double centerLongitude) {
+  return Position(
+    longitude: centerLongitude,
+    latitude: centerLatitude,
+    timestamp: DateTime.now(),
+    accuracy: 1,
+    altitude: 1,
+    heading: 1,
+    speed: 1,
+    speedAccuracy: 1,
+    altitudeAccuracy: 0.0,
+    headingAccuracy: 0.0,
+  );
+}

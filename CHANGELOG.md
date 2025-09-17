@@ -1,3 +1,8 @@
+## 3.0.4
+* Fixed an issue with landscape view that caused images to appear vertically distorted.
+* Updated dependencies to the latest package versions.
+* Update Android Java sourceCompatibility and targetCompatibility = JavaVersion.VERSION_17
+
 ## 3.0.3
 * Added customizable message for when the user is too far away in ar_location_widget
 

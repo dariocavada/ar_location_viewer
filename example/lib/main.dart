@@ -23,8 +23,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         body: ArLocationWidget(
+          maxVisibleDistance: 100000,
           annotations: annotations,
-          showDebugInfoSensor: false,
+          showDebugInfoSensor: true,
           annotationViewerBuilder: (context, annotation) {
             return AnnotationViewer(
               key: ValueKey(annotation.uid),
@@ -32,16 +33,8 @@ class _MyAppState extends State<MyApp> {
             );
           },
           onLocationChange: (Position position) {
-            Future.delayed(const Duration(seconds: 5), () {
-              annotations =
-                  fakeAnnotation(position: position, numberMaxPoi: 50);
-
-              // Uncomment to test far annotations
-              /*annotations = farAnnotation(
-                position: position,
-                numberMaxPoi: 5,
-              );*/
-
+            Future.delayed(const Duration(seconds: 2), () {
+              annotations = fakeAnnotation(position: position, numberMaxPoi: 5);
               setState(() {});
             });
           },

@@ -206,10 +206,20 @@ class _ArViewerState extends State<ArViewer> {
         // Prova ad ottenere FOV reale se disponibile nel futuro
         // Per ora usa valori più precisi basati sulla risoluzione
         final previewSize = widget.cameraController!.value.previewSize!;
-        final aspectRatio = previewSize.width / previewSize.height;
+
+        // Considera l'orientamento per calcolare l'aspect ratio corretto
+        double aspectRatio;
+        if (orientation == NativeDeviceOrientation.landscapeLeft ||
+            orientation == NativeDeviceOrientation.landscapeRight) {
+          // In landscape, inverti le dimensioni del preview
+          aspectRatio = previewSize.height / previewSize.width;
+        } else {
+          // In portrait, usa le dimensioni normali
+          aspectRatio = previewSize.width / previewSize.height;
+        }
 
         // Adatta il FOV in base all'aspect ratio della fotocamera
-        baseFOv = 60.0 + (aspectRatio - 1.0) * 10.0; // Adattamento dinamico
+        baseFOv = 60.0 + (aspectRatio - 0.75) * 20.0; // Adattamento dinamico
         baseFOv = baseFOv.clamp(55.0, 75.0); // Limita a valori ragionevoli
       } catch (e) {
         // Fallback ai valori di default
@@ -217,18 +227,20 @@ class _ArViewerState extends State<ArViewer> {
       }
     }
 
-    // Calcola l'aspect ratio dello schermo
-    final aspectRatio = width / height;
+    // Calcola l'aspect ratio dello schermo attuale
+    final screenAspectRatio = width / height;
 
     if (orientation == NativeDeviceOrientation.landscapeLeft ||
         orientation == NativeDeviceOrientation.landscapeRight) {
       hFov = baseFOv;
-      // Calcola vFov basato sull'aspect ratio reale
-      vFov = (2 * atan(tan((hFov / 2).toRadians) / aspectRatio)).toDegrees;
+      // Calcola vFov basato sull'aspect ratio reale dello schermo
+      vFov =
+          (2 * atan(tan((hFov / 2).toRadians) / screenAspectRatio)).toDegrees;
     } else {
       // In modalità portrait, il FOV verticale è tipicamente minore
       vFov = baseFOv * 0.75; // Ridotto per modalità portrait
-      hFov = (2 * atan(tan((vFov / 2).toRadians) * aspectRatio)).toDegrees;
+      hFov =
+          (2 * atan(tan((vFov / 2).toRadians) * screenAspectRatio)).toDegrees;
     }
 
     arStatus.hFov = hFov;
