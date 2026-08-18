@@ -101,7 +101,7 @@ class _ArLocationWidgetState extends State<ArLocationWidget> {
             cameraController: cameraController,
             tooFarAnnotationsMessage: widget.tooFarAnnotationsMessage,
           ),
-        if (widget.accessory != null) widget.accessory!
+        if (widget.accessory != null) widget.accessory!,
       ],
     );
   }

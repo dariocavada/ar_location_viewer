@@ -23,44 +23,45 @@ List<Annotation> farAnnotation({
   int distance = 1500,
   int numberMaxPoi = 10,
 }) {
-  return List<Annotation>.generate(
-    numberMaxPoi,
-    (index) {
-      return Annotation(
-        uid: const Uuid().v1(),
-        position: getRandomLocation(
-          0.0,
-          0.0,
-          distance / 100000,
-          distance / 100000,
-        ),
-        type: getRandomAnnotation(),
-      );
-    },
-  );
+  return List<Annotation>.generate(numberMaxPoi, (index) {
+    return Annotation(
+      uid: const Uuid().v1(),
+      position: getRandomLocation(
+        0.0,
+        0.0,
+        distance / 100000,
+        distance / 100000,
+      ),
+      type: getRandomAnnotation(),
+    );
+  });
 }
 
-List<Annotation> fakeAnnotation(
-    {required Position position, int distance = 1500, int numberMaxPoi = 100}) {
-  return List<Annotation>.generate(
-    numberMaxPoi,
-    (index) {
-      return Annotation(
-        uid: const Uuid().v1(),
-        position: getRandomLocation(
-          position.latitude,
-          position.longitude,
-          distance / 100000,
-          distance / 100000,
-        ),
-        type: getRandomAnnotation(),
-      );
-    },
-  );
+List<Annotation> fakeAnnotation({
+  required Position position,
+  int distance = 1500,
+  int numberMaxPoi = 100,
+}) {
+  return List<Annotation>.generate(numberMaxPoi, (index) {
+    return Annotation(
+      uid: const Uuid().v1(),
+      position: getRandomLocation(
+        position.latitude,
+        position.longitude,
+        distance / 100000,
+        distance / 100000,
+      ),
+      type: getRandomAnnotation(),
+    );
+  });
 }
 
-Position getRandomLocation(double centerLatitude, double centerLongitude,
-    double deltaLat, double deltaLon) {
+Position getRandomLocation(
+  double centerLatitude,
+  double centerLongitude,
+  double deltaLat,
+  double deltaLon,
+) {
   var lat = centerLatitude;
   var lon = centerLongitude;
 
@@ -83,18 +84,17 @@ Position getRandomLocation(double centerLatitude, double centerLongitude,
   );
 }
 
-List<Annotation> realAnnotation(
-    {required double centerLatitude, required centerLongitude}) {
-  return List<Annotation>.generate(
-    1,
-    (index) {
-      return Annotation(
-        uid: const Uuid().v1(),
-        position: getRealDistance(centerLatitude, centerLongitude),
-        type: getRandomAnnotation(),
-      );
-    },
-  );
+List<Annotation> realAnnotation({
+  required double centerLatitude,
+  required centerLongitude,
+}) {
+  return List<Annotation>.generate(1, (index) {
+    return Annotation(
+      uid: const Uuid().v1(),
+      position: getRealDistance(centerLatitude, centerLongitude),
+      type: getRandomAnnotation(),
+    );
+  });
 }
 
 Position getRealDistance(double centerLatitude, double centerLongitude) {

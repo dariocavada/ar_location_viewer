@@ -1,5 +1,3 @@
-library ar_location_viewer;
-
 export 'ar_annotation.dart';
 export 'ar_camera.dart';
 export 'ar_compass.dart';

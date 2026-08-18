@@ -7,7 +7,15 @@ Inspired [HDAugmentedReality](https://github.com/DanijelHuis/HDAugmentedReality)
 Is an upgraded version of:
 https://pub.dev/packages/ar_location_view
 
-Upgraded dependencies
+## Requirements
+
+* Flutter 3.44 or newer (Flutter 3.47 stable is used for verification)
+* Dart 3.12 or newer
+* Android API 24 or newer, compiling against Android SDK 37
+* iOS 13 or newer
+
+The iOS plugin supports both Swift Package Manager and CocoaPods. Swift Package
+Manager is the primary integration used by the example app.
 
 
 ## Demo
@@ -32,36 +40,24 @@ Where primary goal is the visibility of all POIs.
 ### Basic usage
 Look at the example
 
-### For iOs
-ArLocationView use device camera and location, add in `Info.plist`
+### For iOS
+ArLocationViewer uses the device camera and location. Add usage descriptions to
+your app's `Info.plist`:
 ```xml
 <key>NSLocationWhenInUseUsageDescription</key>
-<key>NSLocationUsageDescription</key>
-<key>NSLocationAlwaysUsageDescription</key>
-<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+<string>Your location is used to position nearby points of interest.</string>
 <key>NSCameraUsageDescription</key>
+<string>The camera is used to display the augmented-reality view.</string>
 ```
+
+If your app requests background or always-on location access, also add the
+corresponding `NSLocationAlwaysAndWhenInUseUsageDescription` key.
+
 ### For Android
-Add permission in `manifest.xml`
-```xml
-<uses-permission android:name="android.permission.CAMERA"/>
-<uses-permission android:name="android.permission.RECORD_AUDIO"/>
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
-```
-
-If you have an exception like: 
-
-```
-PlatformException(error, To use the sampling rate of 500 microseconds, app needs to declare the normal permission HIGH_SAMPLING_RATE_SENSORS., null, null) 
-```
-add  the follwing to the manifest:
-
-```xml
-<uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS"/>
-```
+The plugin manifest declares camera, coarse/fine location, and
+`HIGH_SAMPLING_RATE_SENSORS`; these permissions are merged automatically into
+the consuming app. Runtime camera and location permissions are requested by the
+plugin.
 
 Create class extend ArAnnotation
 
@@ -158,4 +154,3 @@ class AnnotationView extends StatelessWidget {
 ## License
 
 ArLocationViewer is released under the MIT license.
-

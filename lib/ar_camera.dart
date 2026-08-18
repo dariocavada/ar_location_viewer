@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -31,22 +33,22 @@ class _ArCameraViewerState extends State<ArCamera> {
   }
 
   @override
-  void dispose() async {
-    await controller?.dispose();
+  void dispose() {
+    final cameraController = controller;
+    controller = null;
+    if (cameraController != null) {
+      unawaited(cameraController.dispose());
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     if (!isCameraAuthorize) {
-      return const Center(
-        child: Text('Need camera authorization'),
-      );
+      return const Center(child: Text('Need camera authorization'));
     }
     if (!isCameraInitialize) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
     if (isCameraAuthorize && isCameraInitialize) {
       return SizedBox(
@@ -139,7 +141,9 @@ class _ArCameraViewerState extends State<ArCamera> {
       widget.onCameraError('On error when camera initialize ');
       isCameraInitialize = false;
     } finally {
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     }
   }
 
@@ -152,11 +156,15 @@ class _ArCameraViewerState extends State<ArCamera> {
         widget.onCameraError('Camera need authorization permission');
       } else {
         isCameraAuthorize = true;
-        setState(() {});
+        if (mounted) {
+          setState(() {});
+        }
       }
     } else {
       isCameraAuthorize = true;
-      setState(() {});
+      if (mounted) {
+        setState(() {});
+      }
     }
   }
 }

@@ -8,7 +8,7 @@ import 'package:vector_math/vector_math_64.dart';
 class ArMath {
   ///Normalizes degree to 0-360
   static double normalizeDegree(double degree) {
-    var degreeNormalized = 360 % degree;
+    var degreeNormalized = degree % 360;
     if (degreeNormalized < 0) {
       degreeNormalized = 360 + degreeNormalized;
     }
@@ -37,8 +37,12 @@ class ArMath {
     return deltaAngle;
   }
 
-  static double exponentialFilter(double newValue, double previousValue,
-      double filterFactor, bool isCircular) {
+  static double exponentialFilter(
+    double newValue,
+    double previousValue,
+    double filterFactor,
+    bool isCircular,
+  ) {
     double newValueP = newValue;
     if (isCircular) {
       if ((newValueP - previousValue).abs() > 180) {
@@ -55,8 +59,10 @@ class ArMath {
   }
 
   static double bearingFromUserToLocation(
-      Position userLocation, Position location,
-      {bool approximate = false}) {
+    Position userLocation,
+    Position location, {
+    bool approximate = false,
+  }) {
     double bearing = 0;
     if (approximate) {
       bearing = approximateBearingBetween(userLocation, location);
@@ -87,7 +93,9 @@ class ArMath {
   }
 
   static double approximateBearingBetween(
-      Position startLocation, Position endLocation) {
+    Position startLocation,
+    Position endLocation,
+  ) {
     double bearing = 0;
     const double latLongFactor = 1.33975031663;
 
@@ -99,9 +107,10 @@ class ArMath {
     final double longitudeDistance =
         startCoordinate.longitude - endCoordinate.longitude;
 
-    bearing =
-        (atan2(longitudeDistance, (latitudeDistance * latLongFactor.toDegrees)))
-            .toDegrees;
+    bearing = (atan2(
+      longitudeDistance,
+      (latitudeDistance * latLongFactor.toDegrees),
+    )).toDegrees;
     bearing += 180.0;
 
     return bearing;

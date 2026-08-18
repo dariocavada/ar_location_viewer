@@ -16,9 +16,9 @@ class CompassEvent {
   final double? accuracy;
 
   CompassEvent.fromList(List<double>? data)
-      : heading = data?[0],
-        headingForCameraMode = data?[1],
-        accuracy = (data == null) || (data[2] == -1) ? null : data[2];
+    : heading = data?[0],
+      headingForCameraMode = data?[1],
+      accuracy = (data == null) || (data[2] == -1) ? null : data[2];
 
   @override
   String toString() {
@@ -35,15 +35,16 @@ class ArCompass {
 
   ArCompass._();
 
-  static const EventChannel _compassChannel =
-      EventChannel('pie/ar_viewer_location');
+  static const EventChannel _compassChannel = EventChannel(
+    'pie/ar_viewer_location',
+  );
   static Stream<CompassEvent>? _stream;
 
   /// Provides a [Stream] of compass events that can be listened to.
   static Stream<CompassEvent>? get events {
-    _stream ??= _compassChannel
-        .receiveBroadcastStream()
-        .map((dynamic data) => CompassEvent.fromList(data?.cast<double>()));
+    _stream ??= _compassChannel.receiveBroadcastStream().map(
+      (dynamic data) => CompassEvent.fromList(data?.cast<double>()),
+    );
     return _stream;
   }
 }

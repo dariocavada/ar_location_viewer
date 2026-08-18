@@ -46,15 +46,15 @@ class ArSensorManager {
     _accelerationStream = SensorsPlatform.instance
         .accelerometerEventStream()
         .listen((AccelerometerEvent event) {
-      _accelerometer = Vector3(event.x, event.y, event.z);
-      _calculateSensor();
-    });
+          _accelerometer = Vector3(event.x, event.y, event.z);
+          _calculateSensor();
+        });
     _userAccelerationStream = SensorsPlatform.instance
         .userAccelerometerEventStream()
         .listen((UserAccelerometerEvent event) {
-      _userAccelerometer = Vector3(event.x, event.y, event.z);
-      _calculateSensor();
-    });
+          _userAccelerometer = Vector3(event.x, event.y, event.z);
+          _calculateSensor();
+        });
     _headingStream = ArCompass.events?.listen((CompassEvent event) {
       if (event.heading != null && event.accuracy != null) {
         _heading = event.heading!;
@@ -63,14 +63,16 @@ class ArSensorManager {
       }
     });
 
-    _positionSubscription =
-        Geolocator.getPositionStream().listen((Position position) {
+    _positionSubscription = Geolocator.getPositionStream().listen((
+      Position position,
+    ) {
       _position = position;
       _calculateSensor();
     });
 
-    _orientationStream =
-        _deviceOrientationCommunicator.onOrientationChanged(useSensor: true);
+    _orientationStream = _deviceOrientationCommunicator.onOrientationChanged(
+      useSensor: true,
+    );
     _orientationStreamSubscription = _orientationStream?.listen((event) {
       _orientation = event;
     });

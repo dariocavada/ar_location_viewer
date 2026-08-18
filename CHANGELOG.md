@@ -1,3 +1,13 @@
+## 4.0.0
+* Added Swift Package Manager support while retaining CocoaPods compatibility.
+* Migrated the example iOS app to Swift Package Manager and the UIScene lifecycle.
+* Updated the minimum toolchain to Flutter 3.44 and Dart 3.12.
+* Updated Android to AGP 9.3, Gradle 9.5, Java 17, compile SDK 37, and minimum SDK 24.
+* Updated all direct dependencies, including camera 0.12 and permission_handler 13.
+* Declared the Android camera, location, and high-rate sensor permissions in the plugin manifest.
+* Fixed degree normalization for angles greater than 360 degrees.
+* Fixed asynchronous camera disposal and guarded state updates after widget disposal.
+
 ## 3.0.4
 * Fixed an issue with landscape view that caused images to appear vertically distorted.
 * Updated dependencies to the latest package versions.
